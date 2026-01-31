@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func init() {
+func Init() {
 	if err := godotenv.Load(); err != nil {
 		fmt.Println(".env файла не найдено")
 	}

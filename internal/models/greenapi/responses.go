@@ -1,4 +1,4 @@
-package responses
+package greenapi
 
 type GetSettingsResponse struct {
 	Wid                               string `json:"wid"`
@@ -25,4 +25,12 @@ type GetSettingsResponse struct {
 	IncomingCallWebhook               string `json:"incomingCallWebhook"`
 	EditedMessageWebhook              string `json:"editedMessageWebhook"`
 	DeletedMessageWebhook             string `json:"deletedMessageWebhook"`
+}
+
+type SendMessageResponse struct {
+	IdMessage string `json:"idMessage"`
+}
+
+type GetStateInstanceResponse struct {
+	StateInstance string `json:"stateInstance"`
 }

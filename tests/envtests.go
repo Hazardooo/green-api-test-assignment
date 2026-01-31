@@ -5,4 +5,5 @@ import "green-api-test-assignment/internal/utils"
 var (
 	_, IdInstanceMock = utils.ReadEnv("IDINSTANCE")
 	_, ApiTokenMock   = utils.ReadEnv("APITOKENINSTANCE")
+	_, TestNumberMock = utils.ReadEnv("TESTNUMBER")
 )

@@ -18,9 +18,9 @@ func TestGetUrlClient(t *testing.T) {
 		want string
 	}{
 		{
-			name: "GetUrlClient",
+			name: "GetURLClient",
 			args: args{
-				baseUrl:      client.BaseUrl,
+				baseUrl:      client.BaseURL,
 				userInstance: envTest.IdInstanceMock,
 			},
 			want: "https://1103.api.green-api.com/waInstance" + envTest.IdInstanceMock,
@@ -29,8 +29,8 @@ func TestGetUrlClient(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := utils.GetUrlClient(tt.args.baseUrl, tt.args.userInstance); got != tt.want {
-				t.Errorf("GetUrlClient() = %v, want %v", got, tt.want)
+			if got := utils.GetURLClient(tt.args.baseUrl, tt.args.userInstance); got != tt.want {
+				t.Errorf("GetURLClient() = %v, want %v", got, tt.want)
 			}
 		})
 	}
