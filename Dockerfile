@@ -20,6 +20,7 @@ RUN apk --no-cache add ca-certificates tzdata
 
 COPY --from=builder /app/main .
 COPY --from=builder /app/web ./web
+RUN chmod -R 777 /app/web/static
 
 EXPOSE 8080
 
