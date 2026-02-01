@@ -1,0 +1,16 @@
+{{define "file_form"}}
+    <div class="input-group mb-2">
+        <button type="button" class="btn btn-primary btn-method" onclick="toggleParams('file')">
+            sendFileByUrl
+        </button>
+    </div>
+    <div id="fileParams" class="param-section" style="display: none;">
+        <input type="text" class="form-control mb-2" id="fileChatId" placeholder="79001234567@c.us">
+        <input type="text" class="form-control mb-2" id="fileUrl" placeholder="https://example.com/file.pdf">
+        <input type="text" class="form-control mb-2" id="fileName" placeholder="file.pdf (обязательно с расширением)">
+        <input type="text" class="form-control mb-2" id="fileCaption" placeholder="Подпись к файлу (необязательно)">
+        <button type="button" class="btn btn-success btn-sm w-100" onclick="callApi('file', this)">
+            Отправить файл
+        </button>
+    </div>
+{{end}}

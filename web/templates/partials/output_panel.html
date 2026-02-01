@@ -1,0 +1,17 @@
+{{define "output_panel"}}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Ответ сервера</h5>
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="clearOutput()">
+            Очистить
+        </button>
+    </div>
+
+    <div class="flex-grow-1">
+    <textarea id="output" class="form-control output-area w-100" rows="20" readonly
+              placeholder="Здесь появится ответ от API..."></textarea>
+    </div>
+
+    <div id="statusBar" class="mt-2 small fw-bold text-muted">
+        Готов к работе
+    </div>
+{{end}}

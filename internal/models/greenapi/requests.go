@@ -1,5 +1,10 @@
 package greenapi
 
+type UserInstanceRequest struct {
+	IdInstance string `json:"idInstance"`
+	ApiToken   string `json:"apiToken"`
+}
+
 type SendMessageRequest struct {
 	ChatIdOrNumber string `json:"chatId"`
 	Message        string `json:"message"`

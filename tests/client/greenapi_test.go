@@ -2,8 +2,9 @@ package client
 
 import (
 	"context"
-	client2 "green-api-test-assignment/internal/client"
+	client "green-api-test-assignment/internal/client"
 	"green-api-test-assignment/internal/models/greenapi"
+	"green-api-test-assignment/internal/utils"
 	envTest "green-api-test-assignment/tests"
 	"net/http"
 	"testing"
@@ -13,6 +14,7 @@ import (
 var (
 	httpClientMock = &http.Client{Timeout: 30 * time.Second}
 	ctxMock        = context.Background()
+	BaseURLMock    = utils.GetURLClient(client.BaseURL, envTest.IdInstanceMock)
 )
 
 func TestGreenAPIClient_GetSettings(t *testing.T) {
@@ -36,7 +38,7 @@ func TestGreenAPIClient_GetSettings(t *testing.T) {
 			name: "GetSettings",
 			fields: fields{
 				httpClient: httpClientMock,
-				baseURL:    client2.BaseURL,
+				baseURL:    BaseURLMock,
 				idInstance: envTest.IdInstanceMock,
 				apiToken:   envTest.ApiTokenMock,
 			},
@@ -50,7 +52,7 @@ func TestGreenAPIClient_GetSettings(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &client2.GreenAPIClient{
+			c := &client.GreenAPIClient{
 				HttpClient: tt.fields.httpClient,
 				BaseURL:    tt.fields.baseURL,
 				IdInstance: tt.fields.idInstance,
@@ -86,7 +88,7 @@ func TestGreenAPIClient_GetStateInstance(t *testing.T) {
 			name: "GetStateInstance",
 			fields: fields{
 				httpClient: httpClientMock,
-				baseURL:    client2.BaseURL,
+				baseURL:    BaseURLMock,
 				idInstance: envTest.IdInstanceMock,
 				apiToken:   envTest.ApiTokenMock,
 			},
@@ -100,7 +102,7 @@ func TestGreenAPIClient_GetStateInstance(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &client2.GreenAPIClient{
+			c := &client.GreenAPIClient{
 				HttpClient: tt.fields.httpClient,
 				BaseURL:    tt.fields.baseURL,
 				IdInstance: tt.fields.idInstance,
@@ -108,9 +110,9 @@ func TestGreenAPIClient_GetStateInstance(t *testing.T) {
 			}
 			got, err := c.GetStateInstance(tt.args.ctx)
 			if err != nil {
-				t.Log(err)
+				t.Error(err)
 			}
-			t.Logf("GetStateInstance() got = %v", got)
+			t.Logf("Accept - GetStateInstance() got = %v", got)
 		})
 	}
 }
@@ -137,7 +139,7 @@ func TestGreenAPIClient_SendFileByUrl(t *testing.T) {
 			name: "",
 			fields: fields{
 				httpClient: httpClientMock,
-				baseURL:    client2.BaseURL,
+				baseURL:    BaseURLMock,
 				idInstance: envTest.IdInstanceMock,
 				apiToken:   envTest.ApiTokenMock,
 			},
@@ -157,7 +159,7 @@ func TestGreenAPIClient_SendFileByUrl(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &client2.GreenAPIClient{
+			c := &client.GreenAPIClient{
 				HttpClient: tt.fields.httpClient,
 				BaseURL:    tt.fields.baseURL,
 				IdInstance: tt.fields.idInstance,
@@ -191,10 +193,10 @@ func TestGreenAPIClient_SendMessage(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "",
+			name: "SendMessage",
 			fields: fields{
 				httpClient: httpClientMock,
-				baseURL:    client2.BaseURL,
+				baseURL:    BaseURLMock,
 				idInstance: envTest.IdInstanceMock,
 				apiToken:   envTest.ApiTokenMock,
 			},
@@ -212,7 +214,7 @@ func TestGreenAPIClient_SendMessage(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &client2.GreenAPIClient{
+			c := &client.GreenAPIClient{
 				HttpClient: tt.fields.httpClient,
 				BaseURL:    tt.fields.baseURL,
 				IdInstance: tt.fields.idInstance,

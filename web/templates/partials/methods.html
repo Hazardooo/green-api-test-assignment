@@ -1,0 +1,15 @@
+{{define "methods"}}
+    <h5 class="mb-3">Методы API</h5>
+    <div class="row g-2">
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary btn-method w-100" onclick="callApi('state', this)">
+                getStateInstance
+            </button>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-outline-primary btn-method w-100" onclick="callApi('settings', this)">
+                getSettings
+            </button>
+        </div>
+    </div>
+{{end}}

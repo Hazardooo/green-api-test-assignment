@@ -1,0 +1,14 @@
+{{define "message_form"}}
+  <div class="input-group mb-2 mt-3">
+    <button type="button" class="btn btn-primary btn-method" onclick="toggleParams('msg')">
+      sendMessage
+    </button>
+  </div>
+  <div id="msgParams" class="param-section" style="display: none;">
+    <input type="text" class="form-control mb-2" id="chatId" placeholder="79001234567@c.us">
+    <textarea class="form-control mb-2" id="messageText" rows="2" placeholder="Текст сообщения..."></textarea>
+    <button type="button" class="btn btn-success btn-sm w-100" onclick="callApi('message', this)">
+      Отправить
+    </button>
+  </div>
+{{end}}
