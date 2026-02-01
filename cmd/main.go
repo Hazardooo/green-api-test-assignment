@@ -3,6 +3,8 @@ package main
 import (
 	"html/template"
 	"log"
+	"os"
+	"strings"
 
 	"green-api-test-assignment/internal/handlers"
 
@@ -69,7 +71,23 @@ func main() {
 			return
 		}
 		if len(path) > 8 && path[:8] == "/static/" {
-			fasthttp.ServeFile(ctx, "./web"+path)
+			filePath := "./web" + path
+			data, err := os.ReadFile(filePath)
+			if err != nil {
+				ctx.SetStatusCode(fasthttp.StatusNotFound)
+				return
+			}
+			contentType := "application/octet-stream"
+			switch {
+			case strings.HasSuffix(path, ".css"):
+				contentType = "text/css"
+			case strings.HasSuffix(path, ".js"):
+				contentType = "application/javascript"
+			case strings.HasSuffix(path, ".html"):
+				contentType = "text/html"
+			}
+			ctx.SetContentType(contentType)
+			ctx.Write(data)
 			return
 		}
 		ctx.SetStatusCode(fasthttp.StatusNotFound)
